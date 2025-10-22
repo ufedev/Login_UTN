@@ -1,0 +1,6 @@
+back/node_modules
+back/package-lock.json
+front/node_modules
+front/package-lock.json
+**/*/.env
+
