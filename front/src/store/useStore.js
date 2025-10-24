@@ -1,26 +1,20 @@
 import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
-
-// create(persist(funcion,opcions))
-
-export const useStore = create(
-  persist(
-    // Primer parametro es el inicializador de estados
-    // es una function que toma como parametro set y retorna un objeto con los getter y los setters de cada estado
-    (set) => {
-      return {
-        token: null,// estado getter
-        setToken: (new_token) => set(() => {
-          return {
-            token: new_token
-          }
-        })// Estado setter (el que modifica)
-      }
+// Todos los hooks (ganchos) inician con `use`
+// Solo se puden usar dentro de componentes
+// create(persist(funcion,configuracion[objeto])) 
+// const [getter,Setter]= useState()
+export const useStore = create(persist(
+  (set) => ({
+    user: { //getter
+      email: null,
+      full_name: null,
+      token: null
     },
-    // Nombre que va a tener en el localstorage
-    {
-      name: "web_login_token",
-      storage: createJSONStorage(() => sessionStorage)
-      //
-    }))
+    setUser: (newuser) => set({ user: newuser })//setter o modificador
+  }), // <- hay una coma
+  {// configuracion de persist
+    name: "token_login_web"
+  }
+))

@@ -94,7 +94,11 @@ routes.post("/login", async (req, res) => {
 
     res.json({
       error: false,
-      token: token
+      user: {
+        full_name: user.fullName,
+        email: user.email,
+        token: `Bearer ${token}`
+      }
     })
   } catch {
     res.status(500).json({
@@ -104,5 +108,30 @@ routes.post("/login", async (req, res) => {
   }
 
 
+
+})
+
+
+
+
+routes.get("/verify-token", async (req, res) => {
+
+  const headers = req.headers
+  const auth = headers.authorization
+  // Bearer LKJFLKJFUDOSIJLKLKFJDSLK
+  const token = auth.split(" ")[1]
+
+  const verify = jwt.verify(token, process.env.SECRET)
+
+  console.log(verify)
+
+  if (!verify) {
+    res.json({ error: true })
+    return
+  }
+
+  res.json({
+    error: false
+  })
 
 })

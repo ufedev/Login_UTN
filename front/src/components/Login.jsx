@@ -4,14 +4,13 @@ import { Form } from './Form'
 import { Input } from "./Input"
 import { Button } from "./Button"
 import { toast } from 'react-toastify'
-import { useStore } from "../store/useStore"
-
+import { useStore } from '../store/useStore'
 const Legend = () => {
   return <p>No tiene cuenta? <Link to="/register" className="underline text-sky-800" >Registrate</Link></p>
 }
 
 const Login = () => {
-  const setToken = useStore(state => state.setToken)
+  const { setUser } = useStore()
   // Estados
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -42,8 +41,8 @@ const Login = () => {
         return
       }
 
-      setToken(res.token)
-
+      setUser(res.user)
+      toast.success("Sesion iniciada")
 
     } catch {
 
@@ -70,7 +69,6 @@ const Login = () => {
         onChange={(e) => { setPassword(e.target.value) }}
       />
       <Button type='submit' value="Inciar Sesion" />
-
     </Form>
   )
 }
