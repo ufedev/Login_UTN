@@ -1,0 +1,13 @@
+
+> login@1.0.0 dev:front
+> cd front && npm run dev
+
+
+> front@0.0.0 dev
+> vite
+
+
+  VITE v7.1.11  ready in 168 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
