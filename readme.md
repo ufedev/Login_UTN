@@ -1,13 +1,18 @@
 # Rutas Backend
 - /productos - POST 
+`Ruta encargada de crear un nuevo producto, requiere lo siguiente`
     - body:
         ```ts
-        let nombre:string
-        let stock:int
-        let price:decimal
+        {
+            nombre:"string",
+            price:'decimal',
+            stock:"integer"
+        }
 
         ```
     - headers:
         ```ts
-        let authorization:string 
+        {
+            authorization:"string"
+        }
         ```
